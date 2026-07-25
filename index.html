@@ -3,39 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex</title>
+    <meta name="description" content="Explore, filter, search, and analyze Pokémon with high-resolution artwork, detailed stats, type classification, and audio cries.">
+    <title>Pokédex - Ultimate Pokémon Database</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Pokédex</h1>
-            <div class="controls">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search Pokémon...">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="pokeball-icon">
+                    <div class="pokeball-top"></div>
+                    <div class="pokeball-center"></div>
+                    <div class="pokeball-bottom"></div>
                 </div>
-                <select id="typeFilter">
-                    <option value="">All Types</option>
-                </select>
-                <select id="sortOrder">
-                    <option value="id">Sort by ID</option>
-                    <option value="name">Sort by Name</option>
-                    <option value="height">Sort by Height</option>
-                    <option value="weight">Sort by Weight</option>
-                </select>
+                <div class="title-wrap">
+                    <h1>Pokédex</h1>
+                    <span class="subtitle">Kanto Generation I Edition</span>
+                </div>
+            </div>
+            
+            <div class="header-stats" id="headerStats">
+                <span class="stat-badge"><i class="fa-solid fa-layer-group"></i> <span id="pokemonCount">151</span> Pokémon</span>
             </div>
         </header>
 
-        <div id="loading" class="loading">
-            Loading Pokémon...
+        <!-- Controls Bar -->
+        <section class="controls-card">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search by name or #ID..." autocomplete="off">
+                <button type="button" id="clearSearchBtn" class="clear-btn" title="Clear Search" style="display: none;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="filters-group">
+                <div class="select-wrapper">
+                    <i class="fa-solid fa-filter select-icon"></i>
+                    <select id="typeFilter">
+                        <option value="">All Types</option>
+                    </select>
+                </div>
+
+                <div class="select-wrapper">
+                    <i class="fa-solid fa-arrow-down-short-wide select-icon"></i>
+                    <select id="sortOrder">
+                        <option value="id">Sort by ID (Asc)</option>
+                        <option value="id-desc">Sort by ID (Desc)</option>
+                        <option value="name">Sort by Name</option>
+                        <option value="attack">Sort by Highest Attack</option>
+                        <option value="stats">Sort by Total Stats</option>
+                        <option value="height">Sort by Height</option>
+                        <option value="weight">Sort by Weight</option>
+                    </select>
+                </div>
+
+                <button type="button" id="favFilterBtn" class="filter-toggle-btn">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Favorites</span>
+                    <span id="favCountBadge" class="fav-badge">0</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Loading State Skeleton -->
+        <div id="loading" class="loading-container">
+            <div class="skeleton-grid">
+                <!-- 12 Skeleton cards dynamically generated or styled -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
         </div>
 
-        <div id="pokemonGrid" class="pokemon-grid"></div>
+        <!-- Pokémon Grid -->
+        <main id="pokemonGrid" class="pokemon-grid"></main>
     </div>
 
-    <div id="pokemonModal" class="pokemon-modal">
-        <div class="modal-content">
-            <div id="modalContent"></div>
+    <!-- Details Modal -->
+    <div id="pokemonModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-card">
+            <button type="button" id="closeModalBtn" class="modal-close-btn" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <button type="button" id="prevPokemonBtn" class="modal-nav-btn prev-btn" title="Previous Pokémon">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            
+            <button type="button" id="nextPokemonBtn" class="modal-nav-btn next-btn" title="Next Pokémon">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div id="modalBody" class="modal-body">
+                <!-- Dynamically populated -->
+            </div>
         </div>
     </div>
 
