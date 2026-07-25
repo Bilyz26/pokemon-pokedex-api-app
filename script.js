@@ -432,6 +432,18 @@ function setupEventListeners() {
         applyFiltersAndRender();
     });
 
+    // Random Hero Pokémon Inspection Button
+    const randomHeroBtn = document.getElementById('randomPokemonHeroBtn');
+    if (randomHeroBtn) {
+        randomHeroBtn.addEventListener('click', () => {
+            if (appState.allPokemon.length > 0) {
+                const randomIndex = Math.floor(Math.random() * appState.allPokemon.length);
+                const randomPokemon = appState.allPokemon[randomIndex];
+                openModal(randomPokemon.id);
+            }
+        });
+    }
+
     // Event Delegation for Grid Action Clicks (Favorite or Open Details)
     pokemonGrid.addEventListener('click', (e) => {
         const favBtn = e.target.closest('[data-action="favorite"]');

@@ -56,6 +56,10 @@
 .type-fairy    { --type-color: #ec8fe6; }
 
 /* Global Reset & Base */
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -161,6 +165,247 @@ body {
 
 .header-stats .stat-badge i {
     color: var(--primary-red);
+}
+
+/* ==========================================================================
+   Hero Section & Animated Fire Effects
+   ========================================================================== */
+
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(249, 115, 22, 0.12) 40%, rgba(15, 23, 42, 0.85) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    border-radius: var(--radius-lg);
+    padding: 3.5rem 3rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.fire-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.fire-flame {
+    position: absolute;
+    bottom: -20px;
+    border-radius: 50%;
+    filter: blur(28px);
+    opacity: 0.4;
+    animation: flamePulse 3s ease-in-out infinite alternate;
+}
+
+.flame-1 {
+    left: 10%;
+    width: 220px;
+    height: 220px;
+    background: #ff4500;
+    animation-delay: 0s;
+}
+
+.flame-2 {
+    right: 25%;
+    width: 260px;
+    height: 260px;
+    background: #f97316;
+    animation-delay: 1s;
+}
+
+.flame-3 {
+    right: 5%;
+    width: 180px;
+    height: 180px;
+    background: #ef4444;
+    animation-delay: 2s;
+}
+
+@keyframes flamePulse {
+    0% { transform: scale(0.85) translateY(0); opacity: 0.3; }
+    100% { transform: scale(1.25) translateY(-20px); opacity: 0.6; }
+}
+
+.fire-ember {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ffb703;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff4500, 0 0 20px #f97316;
+    animation: emberRise 4s infinite linear;
+}
+
+.ember-1 { left: 15%; animation-duration: 3.5s; animation-delay: 0s; }
+.ember-2 { left: 45%; animation-duration: 4.2s; animation-delay: 1.2s; }
+.ember-3 { left: 70%; animation-duration: 3.8s; animation-delay: 0.5s; }
+.ember-4 { left: 88%; animation-duration: 4.5s; animation-delay: 2s; }
+
+@keyframes emberRise {
+    0% { transform: translateY(100px) scale(0.5); opacity: 0; }
+    50% { opacity: 0.85; }
+    100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(249, 115, 22, 0.18);
+    border: 1px solid rgba(249, 115, 22, 0.45);
+    color: #fb923c;
+    padding: 0.4rem 1.1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+}
+
+.fire-text-glow {
+    background: linear-gradient(135deg, #ff4500, #ff8c00, #ff0055);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fireTextGlow 3.5s ease infinite alternate;
+}
+
+@keyframes fireTextGlow {
+    0% { background-position: 0% 50%; filter: drop-shadow(0 0 12px rgba(255, 69, 0, 0.5)); }
+    100% { background-position: 100% 50%; filter: drop-shadow(0 0 24px rgba(255, 140, 0, 0.85)); }
+}
+
+.hero-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin-bottom: 2.25rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #ff4500, #f97316);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: 0 10px 28px rgba(249, 115, 22, 0.45);
+    transition: var(--transition-smooth);
+}
+
+.hero-cta-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(249, 115, 22, 0.65);
+    background: linear-gradient(135deg, #ea580c, #dc2626);
+}
+
+.hero-cta-btn i {
+    font-size: 1.15rem;
+}
+
+.hero-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid var(--border-highlight);
+    color: var(--text-primary);
+    padding: 1rem 1.6rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.hero-secondary-btn:hover {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: #f97316;
+    color: #fb923c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.25);
+}
+
+/* Hero Artwork Visual */
+.hero-visual {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-aura-glow {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.6) 0%, rgba(239, 68, 68, 0.25) 60%, transparent 75%);
+    filter: blur(25px);
+    animation: flamePulse 2.5s infinite alternate;
+}
+
+.hero-pokemon-image {
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
+    position: relative;
+    z-index: 3;
+    filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.65));
+}
+
+.float-animation {
+    animation: floatLevitate 4s ease-in-out infinite;
+}
+
+@keyframes floatLevitate {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(2.5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
 }
 
 /* Controls Card */
@@ -908,6 +1153,32 @@ body {
 }
 
 /* Mobile Responsive */
+@media (max-width: 900px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .hero-visual {
+        width: 210px;
+        height: 210px;
+    }
+    
+    .hero-pokemon-image {
+        width: 200px;
+        height: 200px;
+    }
+}
+
 @media (max-width: 768px) {
     .app-header {
         flex-direction: column;

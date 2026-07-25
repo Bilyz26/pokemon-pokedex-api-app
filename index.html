@@ -37,8 +37,49 @@
             </div>
         </header>
 
-        <!-- Controls Bar -->
-        <section class="controls-card">
+        <!-- Hero Section with Animated Fire & Pokémon -->
+        <section class="hero-section">
+            <!-- Animated Fire & Flame Particles -->
+            <div class="fire-backdrop">
+                <div class="fire-flame flame-1"></div>
+                <div class="fire-flame flame-2"></div>
+                <div class="fire-flame flame-3"></div>
+                <div class="fire-ember ember-1"></div>
+                <div class="fire-ember ember-2"></div>
+                <div class="fire-ember ember-3"></div>
+                <div class="fire-ember ember-4"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-tag"><i class="fa-solid fa-fire-flame-curved"></i> Generation I Master Index</div>
+                <h2 class="hero-title">
+                    Unleash The <span class="fire-text-glow">Fire Within</span>
+                </h2>
+                <p class="hero-description">
+                    Explore high-resolution artwork, combat statistics, elemental type matchups, and original audio cries for all 151 iconic Kanto Pokémon.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#catalogSection" class="hero-cta-btn">
+                        <i class="fa-solid fa-bolt"></i> Explore Index Catalog <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <button type="button" id="randomPokemonHeroBtn" class="hero-secondary-btn">
+                        <i class="fa-solid fa-dice"></i> Inspect Random Pokémon
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-aura-glow"></div>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" 
+                     alt="Charizard Fire Hero" 
+                     class="hero-pokemon-image float-animation">
+                <div class="hero-fire-base"></div>
+            </div>
+        </section>
+
+        <!-- Controls Bar Section -->
+        <section id="catalogSection" class="controls-card">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" id="searchInput" placeholder="Search by name or #ID..." autocomplete="off">
@@ -79,7 +120,6 @@
         <!-- Loading State Skeleton -->
         <div id="loading" class="loading-container">
             <div class="skeleton-grid">
-                <!-- 12 Skeleton cards dynamically generated or styled -->
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
